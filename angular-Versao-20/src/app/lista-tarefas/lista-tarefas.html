@@ -1,0 +1,17 @@
+<div class="lista-tarefas-container">
+	<h2>Lista de Tarefas</h2>
+	<form (submit)="adicionarTarefa(); $event.preventDefault();">
+		<input type="text" [(ngModel)]="novaTarefa" name="novaTarefa" placeholder="Nova tarefa" required />
+		<button type="submit">Adicionar</button>
+	</form>
+	<p>Tarefas pendentes: {{ tarefasPendentes() }}</p>
+	<ul>
+		<li *ngFor="let tarefa of tarefas()">
+			<app-tarefa
+				[tarefa]="tarefa"
+				(concluir)="marcarConcluida($event)"
+				(remover)="removerTarefa($event)">
+			</app-tarefa>
+		</li>
+	</ul>
+</div>
